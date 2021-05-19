@@ -15,6 +15,8 @@ public class Field {
     }
 
 
+    public Tile[][] getTiles() { return tiles; }
+
     public Tile tile(Position pos) {
         return tiles[pos.row()][pos.column()];
     }
@@ -34,7 +36,7 @@ public class Field {
     public void setClearField() {
 
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < rows; j++) {
+            for (int j = 0; j < columns; j++) {
                 tiles[i][j] = new Tile(new Position(i, j), false, this);
             }
         }

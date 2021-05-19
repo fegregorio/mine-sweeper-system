@@ -36,7 +36,7 @@ public class Tile {
         }
         else {
             if (flag) { return "F"; }
-            else { return " "; }
+            else { return "•"; }
         }
 
         return "?";

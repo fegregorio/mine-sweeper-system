@@ -12,8 +12,12 @@ public class Game {
     }
 
 
-    public Field getField() { return field; }
     public int getMines() { return mines; }
+
+    public Tile[][] field() {
+
+        return field.getTiles();
+    }
 
     public void generate() {
 

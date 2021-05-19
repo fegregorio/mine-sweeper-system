@@ -1,6 +1,7 @@
 package application;
 
 import gamefield.Game;
+import gamefield.Position;
 
 import java.util.Scanner;
 
@@ -9,8 +10,14 @@ public class Program {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Game gamefield = new Game(10, 10, 10);
+        Game gameField = new Game(10, 10, 10);
 
-        UI.printField(gamefield.field());
+        UI.printField(gameField.tiles());
+
+        String action = UI.readLine(sc);
+
+        gameField.makeAction(action);
+
+        UI.printField(gameField.tiles());
     }
 }

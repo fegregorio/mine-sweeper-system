@@ -1,6 +1,10 @@
 package application;
 
+import gamefield.Position;
 import gamefield.Tile;
+
+import java.util.Locale;
+import java.util.Scanner;
 
 public class UI {
 
@@ -52,5 +56,38 @@ public class UI {
             }
             System.out.println();
         }
+        System.out.println();
+    }
+
+    public static String readLine(Scanner sc) {
+
+        String s = sc.nextLine().strip();
+
+        if (s.equalsIgnoreCase("exit")) {
+            System.exit(0);
+        }
+
+        String row;
+        char column, rule;
+
+        if (s.toLowerCase().contains("open")) {
+
+            row = s.substring(7, 9);
+            column = s.charAt(5);
+            rule = 'o';
+        }
+        else if (s.toLowerCase().contains("flag")) {
+
+            row = s.substring(6, 7);
+            column = s.charAt(5);
+            rule = 'f';
+        }
+        else {
+            row = s.substring(6, 7);
+            column = s.charAt(5);
+            rule = 'o';
+        }
+
+        return String.format("%s %s %s", column, row, rule);
     }
 }

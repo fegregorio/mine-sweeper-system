@@ -20,6 +20,14 @@ public class Position {
         this.column = column;
     }
 
+    protected String asCode(Position pos) {
+        return String.format("%s %02d", (char) ('A' + column), row + 1);
+    }
+
+    protected static Position valueOf(String code) {
+        return new Position(Integer.parseInt(code.substring(2, 4)) - 1, (code.charAt(0)) - 'A');
+    }
+
     @Override
     public String toString() {
         return String.format("%d, %d", row, column);

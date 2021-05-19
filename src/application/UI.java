@@ -78,12 +78,12 @@ public class UI {
         }
         else if (s.toLowerCase().contains("flag")) {
 
-            row = s.substring(6, 7);
+            row = s.substring(7, 9);
             column = s.charAt(5);
             rule = 'f';
         }
         else {
-            row = s.substring(6, 7);
+            row = s.substring(7, 9);
             column = s.charAt(5);
             rule = 'o';
         }

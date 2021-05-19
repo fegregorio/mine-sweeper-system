@@ -1,7 +1,6 @@
 package application;
 
 import gamefield.Game;
-import gamefield.Position;
 
 import java.util.Scanner;
 
@@ -12,12 +11,15 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         Game gameField = new Game(10, 10, 10);
 
-        UI.printField(gameField.tiles());
+        gameField.generate();
+        while (!gameField.isGameOver()) {
 
-        String action = UI.readLine(sc);
+            UI.printField(gameField.tiles());
 
-        gameField.makeAction(action);
+            String action = UI.readLine(sc);
+            gameField.makeAction(action);
 
-        UI.printField(gameField.tiles());
+
+        }
     }
 }

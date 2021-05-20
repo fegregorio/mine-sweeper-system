@@ -1,5 +1,8 @@
 package gamefield;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Field {
 
     private final int rows;
@@ -45,5 +48,30 @@ public class Field {
                 tiles[i][j] = new Tile(new Position(i, j), false, this);
             }
         }
+    }
+
+    public Tile[] unsolvedZeroes() {
+
+        List<Tile> zeroList = new ArrayList<>();
+
+        for (Tile[] t : tiles) {
+            for (Tile tile : t) {
+
+                String icon = tile.toString();
+
+                if (icon.equals("0") && !icon.equals(String.valueOf(tile.surroundingClosed()))) {
+
+                    zeroList.add(tile);
+                }
+            }
+        }
+
+        Tile[] zeroes = new Tile[zeroList.size()];
+
+        for (int i = 0; i < zeroList.size(); i++) {
+            zeroes[i] = zeroList.get(i);
+        }
+
+        return zeroes;
     }
 }

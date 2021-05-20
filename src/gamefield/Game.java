@@ -83,4 +83,18 @@ public class Game {
 
         return false;
     }
+
+    public void openZeros() {
+
+        Tile[] zeroes = field.unsolvedZeroes();
+
+        while (zeroes.length != 0) {
+
+            for (Tile zero : zeroes) {
+
+                field.tile(zero.getPos()).openSurroundingTiles();
+                zeroes = field.unsolvedZeroes();
+            }
+        }
+    }
 }

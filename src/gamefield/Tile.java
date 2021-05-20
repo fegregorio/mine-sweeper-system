@@ -25,11 +25,9 @@ public class Tile {
 
     public void open() {
         if (!flag) { open = true; }
-        // else { throw new GameException("Flagged tiles cannot be opened."); }
     }
     public void flag() {
         if (!open) { flag = !flag; }
-        // else { throw new GameException("This tile cannot have a flag."); }
     }
 
     @Override

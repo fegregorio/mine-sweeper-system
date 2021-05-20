@@ -16,6 +16,7 @@ public class Program {
 
         gameField.generate(action);
         gameField.makeAction(action);
+        gameField.openZeros();
 
         while (!gameField.isGameOver()) {
 
@@ -23,8 +24,7 @@ public class Program {
 
             action = UI.readLine(sc);
             gameField.makeAction(action);
-
-
+            gameField.openZeros();
         }
     }
 }

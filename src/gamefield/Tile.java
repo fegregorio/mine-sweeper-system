@@ -238,7 +238,7 @@ public class Tile {
 
     public Position[] surroundingTiles() {
 
-        Position[] clearTiles = new Position[8];
+        Position[] clearTiles = new Position[9];
         Position p = new Position(0, 0);
 
         p.setValues(pos.row() - 1, pos.column());
@@ -280,6 +280,8 @@ public class Tile {
         if (field.positionExists(p)) {
             clearTiles[7] = new Position(p.row(), p.column());
         }
+
+        clearTiles[8] = new Position(pos.row(), pos.column());
 
         return clearTiles;
     }

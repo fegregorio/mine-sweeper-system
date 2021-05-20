@@ -24,19 +24,22 @@ public class Game {
 
         Position pos = Position.valueOf(code);
         char rule = code.charAt(4);
+        Tile tile = field.tile(pos);
 
         switch (rule) {
 
             case 'O':
-                field.tile(pos).open();
-                if (field.tile(pos).isMine()) { gameOver = true; }
-                if (field.tile(pos).toString().equals("0")) {
-                    field.tile(pos).openSurroundingTiles();
+                tile.open();
+                if (tile.isMine()) {
+                    gameOver = true;
+                }
+                if (tile.toString().equals("0")) {
+                    tile.openSurroundingTiles();
                 }
                 break;
 
             case 'F':
-                field.tile(pos).flag();
+                tile.flag();
                 break;
 
             default:
@@ -73,7 +76,7 @@ public class Game {
 
         for (Position p1 : pos1) {
 
-            if (p1 != null && p1 == p2) {
+            if (p1 != null && p1.equals(p2)) {
                 return true;
             }
         }

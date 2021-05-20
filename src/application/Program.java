@@ -13,9 +13,10 @@ public class Program {
 
         UI.printField(gameField.tiles());
         String action = UI.readLine(sc);
-        gameField.makeAction(action);
 
         gameField.generate(action);
+        gameField.makeAction(action);
+
         while (!gameField.isGameOver()) {
 
             UI.printField(gameField.tiles());

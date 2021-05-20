@@ -24,8 +24,8 @@ public class Position {
         return String.format("%s %02d", (char) ('A' + column), row + 1);
     }
 
-    protected static Position valueOf(String code) {
-        return new Position(Integer.parseInt(code.substring(2, 4)) - 1, (code.charAt(0)) - 'A');
+    protected static Position valueOf(String code) { // input example: [A03 O]
+        return new Position(Integer.parseInt(code.substring(1, 3)) - 1, (code.charAt(0)) - 'A');
     }
 
     @Override

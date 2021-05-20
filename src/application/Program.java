@@ -11,12 +11,16 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         Game gameField = new Game(10, 10, 10);
 
-        gameField.generate();
+        UI.printField(gameField.tiles());
+        String action = UI.readLine(sc);
+        gameField.makeAction(action);
+
+        gameField.generate(action);
         while (!gameField.isGameOver()) {
 
             UI.printField(gameField.tiles());
 
-            String action = UI.readLine(sc);
+            action = UI.readLine(sc);
             gameField.makeAction(action);
 
 

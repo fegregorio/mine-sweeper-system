@@ -20,6 +20,9 @@ public class Field {
     public Tile[][] getTiles() { return tiles; }
 
     public Tile tile(Position pos) {
+        if (!positionExists(pos)) {
+            throw new GameException("Invalid position.");
+        }
         return tiles[pos.row()][pos.column()];
     }
 

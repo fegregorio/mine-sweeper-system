@@ -59,35 +59,19 @@ public class UI {
         System.out.println();
     }
 
-    public static String readLine(Scanner sc) {
+    public static String readLine(Scanner sc) { // input example: [A03 O]
 
-        String s = sc.nextLine().strip();
+        String s = sc.nextLine().strip().toUpperCase();
 
         if (s.equalsIgnoreCase("exit")) {
             System.exit(0);
         }
 
-        String row;
-        char column, rule;
+        String row = s.substring(1, 3);
+        char column = s.charAt(0);
+        char rule = 'N';
+        if (s.length() > 3) { rule = s.charAt(4); }
 
-        if (s.toLowerCase().contains("open")) {
-
-            row = s.substring(7, 9);
-            column = s.charAt(5);
-            rule = 'o';
-        }
-        else if (s.toLowerCase().contains("flag")) {
-
-            row = s.substring(7, 9);
-            column = s.charAt(5);
-            rule = 'f';
-        }
-        else {
-            row = s.substring(7, 9);
-            column = s.charAt(5);
-            rule = 'o';
-        }
-
-        return String.format("%s %s %s", column, row, rule);
+        return String.format("%s%02d %s", column, Integer.parseInt(row), rule);
     }
 }

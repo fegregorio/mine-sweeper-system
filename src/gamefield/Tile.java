@@ -52,29 +52,235 @@ public class Tile {
         Position p = new Position(0, 0);
 
         p.setValues(pos.row() - 1, pos.column());
-        if (field.tile(p).isMine()) { amount++; }
+        if (field.positionExists(p)) {
+            if (field.tile(p).isMine()) { amount++; }
+        }
 
         p.setValues(pos.row() - 1, pos.column() - 1);
-        if (field.tile(p).isMine()) { amount++; }
+        if (field.positionExists(p)) {
+            if (field.tile(p).isMine()) { amount++; }
+        }
 
         p.setValues(pos.row(), pos.column() - 1);
-        if (field.tile(p).isMine()) { amount++; }
+        if (field.positionExists(p)) {
+            if (field.tile(p).isMine()) { amount++; }
+        }
 
         p.setValues(pos.row() + 1, pos.column() - 1);
-        if (field.tile(p).isMine()) { amount++; }
+        if (field.positionExists(p)) {
+            if (field.tile(p).isMine()) { amount++; }
+        }
 
         p.setValues(pos.row() + 1, pos.column());
-        if (field.tile(p).isMine()) { amount++; }
+        if (field.positionExists(p)) {
+            if (field.tile(p).isMine()) { amount++; }
+        }
 
         p.setValues(pos.row() + 1, pos.column() + 1);
-        if (field.tile(p).isMine()) { amount++; }
+        if (field.positionExists(p)) {
+            if (field.tile(p).isMine()) { amount++; }
+        }
 
         p.setValues(pos.row(), pos.column() + 1);
-        if (field.tile(p).isMine()) { amount++; }
+        if (field.positionExists(p)) {
+            if (field.tile(p).isMine()) { amount++; }
+        }
 
         p.setValues(pos.row() - 1, pos.column() + 1);
-        if (field.tile(p).isMine()) { amount++; }
+        if (field.positionExists(p)) {
+            if (field.tile(p).isMine()) { amount++; }
+        }
 
         return amount;
+    }
+
+    public int surroundingFlags() {
+
+        int amount = 0;
+        Position p = new Position(0, 0);
+
+        p.setValues(pos.row() - 1, pos.column());
+        if (field.positionExists(p)) {
+            if (field.tile(p).isFlag()) { amount++; }
+        }
+
+        p.setValues(pos.row() - 1, pos.column() - 1);
+        if (field.positionExists(p)) {
+            if (field.tile(p).isFlag()) { amount++; }
+        }
+
+        p.setValues(pos.row(), pos.column() - 1);
+        if (field.positionExists(p)) {
+            if (field.tile(p).isFlag()) { amount++; }
+        }
+
+        p.setValues(pos.row() + 1, pos.column() - 1);
+        if (field.positionExists(p)) {
+            if (field.tile(p).isFlag()) { amount++; }
+        }
+
+        p.setValues(pos.row() + 1, pos.column());
+        if (field.positionExists(p)) {
+            if (field.tile(p).isFlag()) { amount++; }
+        }
+
+        p.setValues(pos.row() + 1, pos.column() + 1);
+        if (field.positionExists(p)) {
+            if (field.tile(p).isFlag()) { amount++; }
+        }
+
+        p.setValues(pos.row(), pos.column() + 1);
+        if (field.positionExists(p)) {
+            if (field.tile(p).isFlag()) { amount++; }
+        }
+
+        p.setValues(pos.row() - 1, pos.column() + 1);
+        if (field.positionExists(p)) {
+            if (field.tile(p).isFlag()) { amount++; }
+        }
+
+        return amount;
+    }
+
+    public int surroundingClosed() {
+
+        int amount = 0;
+        Position p = new Position(0, 0);
+
+        p.setValues(pos.row() - 1, pos.column());
+        if (field.positionExists(p)) {
+            if (!field.tile(p).isOpen()) { amount++; }
+        }
+
+        p.setValues(pos.row() - 1, pos.column() - 1);
+        if (field.positionExists(p)) {
+            if (!field.tile(p).isOpen()) { amount++; }
+        }
+
+        p.setValues(pos.row(), pos.column() - 1);
+        if (field.positionExists(p)) {
+            if (!field.tile(p).isOpen()) { amount++; }
+        }
+
+        p.setValues(pos.row() + 1, pos.column() - 1);
+        if (field.positionExists(p)) {
+            if (!field.tile(p).isOpen()) { amount++; }
+        }
+
+        p.setValues(pos.row() + 1, pos.column());
+        if (field.positionExists(p)) {
+            if (!field.tile(p).isOpen()) { amount++; }
+        }
+
+        p.setValues(pos.row() + 1, pos.column() + 1);
+        if (field.positionExists(p)) {
+            if (!field.tile(p).isOpen()) { amount++; }
+        }
+
+        p.setValues(pos.row(), pos.column() + 1);
+        if (field.positionExists(p)) {
+            if (!field.tile(p).isOpen()) { amount++; }
+        }
+
+        p.setValues(pos.row() - 1, pos.column() + 1);
+        if (field.positionExists(p)) {
+            if (!field.tile(p).isOpen()) { amount++; }
+        }
+
+        return amount;
+    }
+
+    public void openSurroundingTiles() {
+
+        int amount = 0;
+        Position p = new Position(0, 0);
+
+        p.setValues(pos.row() - 1, pos.column());
+        if (field.positionExists(p)) {
+            field.tile(p).open();
+        }
+
+        p.setValues(pos.row() - 1, pos.column() - 1);
+        if (field.positionExists(p)) {
+            field.tile(p).open();
+        }
+
+        p.setValues(pos.row(), pos.column() - 1);
+        if (field.positionExists(p)) {
+            field.tile(p).open();
+        }
+
+        p.setValues(pos.row() + 1, pos.column() - 1);
+        if (field.positionExists(p)) {
+            field.tile(p).open();
+        }
+
+        p.setValues(pos.row() + 1, pos.column());
+        if (field.positionExists(p)) {
+            field.tile(p).open();
+        }
+
+        p.setValues(pos.row() + 1, pos.column() + 1);
+        if (field.positionExists(p)) {
+            field.tile(p).open();
+        }
+
+        p.setValues(pos.row(), pos.column() + 1);
+        if (field.positionExists(p)) {
+            field.tile(p).open();
+        }
+
+        p.setValues(pos.row() - 1, pos.column() + 1);
+        if (field.positionExists(p)) {
+            field.tile(p).open();
+        }
+    }
+
+    public Position[] surroundingTiles() {
+
+        Position[] clearTiles = new Position[8];
+        Position p = new Position(0, 0);
+
+        p.setValues(pos.row() - 1, pos.column());
+        if (field.positionExists(p)) {
+            clearTiles[0] = new Position(p.row(), p.column());
+        }
+
+        p.setValues(pos.row() - 1, pos.column() - 1);
+        if (field.positionExists(p)) {
+            clearTiles[1] = new Position(p.row(), p.column());
+        }
+
+        p.setValues(pos.row(), pos.column() - 1);
+        if (field.positionExists(p)) {
+            clearTiles[2] = new Position(p.row(), p.column());
+        }
+
+        p.setValues(pos.row() + 1, pos.column() - 1);
+        if (field.positionExists(p)) {
+            clearTiles[3] = new Position(p.row(), p.column());
+        }
+
+        p.setValues(pos.row() + 1, pos.column());
+        if (field.positionExists(p)) {
+            clearTiles[4] = new Position(p.row(), p.column());
+        }
+
+        p.setValues(pos.row() + 1, pos.column() + 1);
+        if (field.positionExists(p)) {
+            clearTiles[5] = new Position(p.row(), p.column());
+        }
+
+        p.setValues(pos.row(), pos.column() + 1);
+        if (field.positionExists(p)) {
+            clearTiles[6] = new Position(p.row(), p.column());
+        }
+
+        p.setValues(pos.row() - 1, pos.column() + 1);
+        if (field.positionExists(p)) {
+            clearTiles[7] = new Position(p.row(), p.column());
+        }
+
+        return clearTiles;
     }
 }

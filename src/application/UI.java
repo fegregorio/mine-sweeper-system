@@ -2,6 +2,7 @@ package application;
 
 import gamefield.Position;
 import gamefield.Tile;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -53,7 +54,25 @@ public class UI {
 
             for (int j = 0; j < tiles[0].length; j++) {
 
-                System.out.print(tiles[i][j]);
+                switch (tiles[i][j].toString()) {
+
+                    case "•":
+                        System.out.print(ANSI_WHITE);
+                        break;
+
+                    case "F":
+                        System.out.print(ANSI_RED);
+                        break;
+
+                    case "0":
+                        System.out.print(ANSI_GRAY);
+                        break;
+
+                    default:
+                        System.out.print(ANSI_YELLOW);
+                }
+
+                System.out.print(tiles[i][j] + ANSI_RESET);
                 System.out.print(" ");
             }
             System.out.println();

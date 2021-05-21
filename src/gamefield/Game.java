@@ -6,19 +6,42 @@ public class Game {
 
     private Field field;
     private final int mines;
+    private int minesTest;
+    private int turn;
     private static boolean gameOver;
+
 
 
     public Game(int rows, int columns, int mines) {
         this.field = new Field(rows, columns);
         this.mines = mines;
         gameOver = false;
+        turn = 1;
     }
 
 
     public int getMines() { return mines; }
+    public int turn() { return turn; }
     public boolean isGameOver() { return gameOver; }
     public Tile[][] tiles() { return field.getTiles(); }
+
+    public int getMinesTest() {
+
+        int amount = 0;
+
+        for (Tile[] t : tiles()) {
+            for (Tile tile: t) {
+
+                if (tile.isMine()) {
+                    amount++;
+                }
+            }
+        }
+
+        return amount;
+    }
+
+    public void next() { turn++; }
 
     public void makeAction(String code) { // input example: [A03 O]
 
@@ -64,7 +87,7 @@ public class Game {
 
                 minesPos[i] = new Position(row, column);
             }
-            while (contains(clearPos, minesPos[i]));
+            while (contains(clearPos, minesPos[i]) || !contains(minesPos, minesPos[i]));
         }
 
         for (int i = 0; i < mines; i++) {

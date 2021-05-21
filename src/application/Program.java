@@ -1,7 +1,9 @@
 package application;
 
 import gamefield.Game;
+import gamefield.GameException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Program {
@@ -11,20 +13,26 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         Game gameField = new Game(10, 10, 10);
 
-        UI.printField(gameField.tiles());
-        String action = UI.readLine(sc);
+        try {
+            while (!gameField.isGameOver()) {
 
-        gameField.generate(action);
-        gameField.makeAction(action);
-        gameField.openZeros();
+                UI.clearScreen();
+                UI.printField(gameField.tiles());
+                String action = UI.readLine(sc);
 
-        while (!gameField.isGameOver()) {
+                if (gameField.turn() == 1) {
+                    gameField.generate(action); // sometimes it doesn't place all the mines
+                }
 
-            UI.printField(gameField.tiles());
+                gameField.makeAction(action);
+                gameField.openZeros();
 
-            action = UI.readLine(sc);
-            gameField.makeAction(action);
-            gameField.openZeros();
+                gameField.next();
+                System.out.println(gameField.getMinesTest());
+            }
+        }
+        catch (GameException | InputMismatchException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

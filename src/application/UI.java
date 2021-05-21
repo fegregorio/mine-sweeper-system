@@ -4,6 +4,7 @@ import gamefield.Position;
 import gamefield.Tile;
 import jdk.swing.interop.SwingInterOpUtils;
 
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -82,17 +83,25 @@ public class UI {
 
     public static String readLine(Scanner sc) { // input example: [A03 O]
 
-        String s = sc.nextLine().strip().toUpperCase();
+        try {
+            String s = sc.nextLine().strip().toUpperCase();
 
-        if (s.equalsIgnoreCase("exit")) {
-            System.exit(0);
+            if (s.equalsIgnoreCase("exit")) {
+                System.exit(0);
+            }
+
+            String row = s.substring(1, 3);
+            char column = s.charAt(0);
+            char rule = 'N';
+            if (s.length() > 3) {
+                rule = s.charAt(4);
+            }
+
+            return String.format("%s%02d %s", column, Integer.parseInt(row), rule);
         }
-
-        String row = s.substring(1, 3);
-        char column = s.charAt(0);
-        char rule = 'N';
-        if (s.length() > 3) { rule = s.charAt(4); }
-
-        return String.format("%s%02d %s", column, Integer.parseInt(row), rule);
+        catch (RuntimeException e) {
+            throw new InputMismatchException(String.format(
+                    "Invalid code. Valid expressions range from %s%02d to %s%02d.", "A", 1, "J", 10));
+        }
     }
 }

@@ -17,19 +17,22 @@ public class Program {
             while (!gameField.isGameOver()) {
 
                 UI.clearScreen();
-                UI.printField(gameField.tiles());
+                UI.printMatch(gameField);
                 String action = UI.readLine(sc);
 
                 if (gameField.turn() == 1) {
-                    gameField.generate(action); // sometimes it doesn't place all the mines
+                    gameField.generate(action);
                 }
 
                 gameField.makeAction(action);
                 gameField.openZeros();
 
                 gameField.next();
-                System.out.println(gameField.getMinesTest());
             }
+
+            UI.clearScreen();
+            UI.printMatch(gameField);
+            System.out.println("Game over.");
         }
         catch (GameException | InputMismatchException e) {
             System.out.println(e.getMessage());

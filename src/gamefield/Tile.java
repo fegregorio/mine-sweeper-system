@@ -2,16 +2,16 @@ package gamefield;
 
 public class Tile {
 
-    private Position pos;
+    private final Position pos;
     private static Field field;
-    private boolean mine;
+    private final boolean mine;
     private boolean open;
     private boolean flag;
 
 
     public Tile(Position pos, boolean mine, Field field) {
         this.pos = pos;
-        this.field = field;
+        Tile.field = field;
         this.mine = mine;
         open = false;
         flag = false;
@@ -35,13 +35,12 @@ public class Tile {
 
         if (open) {
             if (!mine) { return String.valueOf(surroundingMines()); }
+            else { return "M"; }
         }
         else {
             if (flag) { return "F"; }
             else { return "•"; }
         }
-
-        return "?";
     }
 
     public int surroundingMines() {

@@ -1,11 +1,9 @@
 package application;
 
-import gamefield.Position;
+import gamefield.Game;
 import gamefield.Tile;
-import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class UI {
@@ -35,6 +33,14 @@ public class UI {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static void printMatch(Game gameField) {
+
+        printField(gameField.tiles());
+
+        System.out.printf("Mines left: %d", gameField.minesLeft());
+        System.out.printf("%n%n");
     }
 
     public static void printField(Tile[][] tiles) {
@@ -67,6 +73,10 @@ public class UI {
 
                     case "0":
                         System.out.print(ANSI_GRAY);
+                        break;
+
+                    case "M":
+                        System.out.print(ANSI_BLACK);
                         break;
 
                     default:

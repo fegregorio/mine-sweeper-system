@@ -6,10 +6,8 @@ public class Game {
 
     private Field field;
     private final int mines;
-    private int minesTest;
     private int turn;
     private static boolean gameOver;
-
 
 
     public Game(int rows, int columns, int mines) {
@@ -24,15 +22,16 @@ public class Game {
     public int turn() { return turn; }
     public boolean isGameOver() { return gameOver; }
     public Tile[][] tiles() { return field.getTiles(); }
+    public int minesLeft() { return mines - getFlags(); }
 
-    public int getMinesTest() {
+    public int getFlags() {
 
         int amount = 0;
 
         for (Tile[] t : tiles()) {
             for (Tile tile: t) {
 
-                if (tile.isMine()) {
+                if (tile.isFlag()) {
                     amount++;
                 }
             }
@@ -73,6 +72,8 @@ public class Game {
 
     public void generate(String code) { // input example: [A03 O]
 
+        field.setClearField();
+
         Position pos = Position.valueOf(code);
         Position[] clearPos = field.tile(pos).surroundingTiles();
         Position[] minesPos = new Position[mines];
@@ -87,7 +88,7 @@ public class Game {
 
                 minesPos[i] = new Position(row, column);
             }
-            while (contains(clearPos, minesPos[i]) || !contains(minesPos, minesPos[i]));
+            while (contains(clearPos, minesPos[i]) || repeats(minesPos));
         }
 
         for (int i = 0; i < mines; i++) {
@@ -101,6 +102,20 @@ public class Game {
 
             if (p1 != null && p1.equals(p2)) {
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static boolean repeats(Position[] positions) {
+
+        for (Position p1 : positions) {
+            for (Position p2 : positions) {
+
+                if (p1 != null && p2 != null && p1 != p2 && p1.equals(p2)) {
+                    return true;
+                }
             }
         }
 
